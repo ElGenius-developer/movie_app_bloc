@@ -5,6 +5,7 @@ import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
 import 'package:movies_app_with_BLoC/logic/blocs/cast_bloc/cast_bloc.dart';
 import 'package:movies_app_with_BLoC/logic/blocs/links_bloc/links_bloc.dart';
 import 'package:movies_app_with_BLoC/logic/blocs/movie_bloc/movies_bloc.dart';
+import 'package:movies_app_with_BLoC/logic/blocs/trending_bloc/trending_bloc.dart';
 import 'package:movies_app_with_BLoC/presentation/routers/app_router.dart';
 
 import 'logic/cubits/Internet_cubit/internet_cubit.dart';
@@ -25,6 +26,9 @@ void main() {
     ),
     BlocProvider<CastBloc>(
       create: (context) => CastBloc(),
+    ),
+    BlocProvider<TrendingBloc>(
+      create: (context) => TrendingBloc()..add(GetTrendingMovies()),
     ),
   ], child: MovieApp()));
 }

@@ -23,9 +23,9 @@ class CastAvatars extends StatelessWidget {
               builder: (context, state) {
                 if (state is LoadingCast) {
                   return Container(
-                      width: 1,
-                      height: 1,
-                      padding: const EdgeInsets.all(60.0),
+                      height: 5,
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(horizontal: 35),
                       child: LinearProgressIndicator(
                         valueColor: AlwaysStoppedAnimation(Colors.red.shade700),
                       ));

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app_with_BLoC/logic/blocs/cast_bloc/cast_bloc.dart';
 import 'package:movies_app_with_BLoC/logic/blocs/movie_bloc/movies_bloc.dart';
 import 'package:movies_app_with_BLoC/presentation/screens/detail_screen/cast_avatars.dart';
 import 'package:movies_app_with_BLoC/presentation/screens/detail_screen/row_of_custom_icons/icons_row.dart';
@@ -18,6 +19,8 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<CastBloc>(context)
+        .add(FetchingCast(MoviesBloc.movies.results[index].id));
     var size = MediaQuery.of(context).size;
     final results = MoviesBloc.movies.results;
     return Scaffold(

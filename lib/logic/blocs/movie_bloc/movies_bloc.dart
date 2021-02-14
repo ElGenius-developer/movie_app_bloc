@@ -1,19 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:movies_app_with_BLoC/data/Repository/cast/cast_repository.dart';
 import 'package:movies_app_with_BLoC/data/Repository/movies/movies_repository.dart';
-import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
 import 'package:movies_app_with_BLoC/data/models/credits_model/cast.dart';
 import 'package:movies_app_with_BLoC/data/models/credits_model/credits.dart';
 import 'package:movies_app_with_BLoC/data/models/movies_model/moviesAPI.dart';
-import 'package:movies_app_with_BLoC/data/models/movies_model/movies_details.dart';
 
 part 'movies_events.dart';
-
 part 'movies_state.dart';
 
 class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
@@ -23,9 +18,6 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   static Movies get movies => _movies;
   static var credits = Credits();
   MoviesRepository moviesRepository = MoviesRepository();
-  CastRepository _castRepository = CastRepository();
-
-  // static CachedNetworkImageProvider poster,cover;
 
   MoviesBloc({MoviesRepository moviesRepository}) : super(InitialState());
 
@@ -38,7 +30,6 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
       yield LoadingState();
       try {
         _movies = await moviesRepository.getData(category: event.category);
-
         yield SuccessState(movies: movies);
       } catch (e) {
         yield ErrorState(errorMessage: "Failed to load ");

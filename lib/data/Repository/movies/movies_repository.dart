@@ -6,14 +6,11 @@ import 'package:movies_app_with_BLoC/data/models/movies_model/moviesAPI.dart';
 class MoviesRepository extends MoviesRepositoryData {
   // static data is class has all fixed data to use inside the app
   final _constants = StaticData();
-  Movies movies;
+  Movies _movies;
 
   @override
   Future<Movies> getData({String category, pageNumber}) async {
     String url = (_constants.baseUrl + category);
-    // '&language=en-us&page=$currentValue'
-
-    /*$currentValue*/
 
     var parameters = {
       'api_key': _constants.apiKey,
@@ -24,12 +21,32 @@ class MoviesRepository extends MoviesRepositoryData {
     final res = await Dio().get(url, queryParameters: parameters);
 
     if (res.statusCode == 200) {
-      movies = Movies.fromJson(res.data);
+      _movies = Movies.fromJson(res.data);
     } else {
       throw Exception("Failed to load data"); //change it to error in block
 
     }
 
-    return movies;
+    return _movies;
+  }
+
+  @override
+  Future<Movies> getTrendingMovies() async {
+    {
+      String url = (_constants.trendingURL);
+
+      var parameters = {
+        'api_key': _constants.apiKey,
+      };
+
+      final res = await Dio().get(url, queryParameters: parameters);
+
+      if (res.statusCode == 200) {
+        return Movies.fromJson(res.data);
+      } else {
+        throw Exception("Failed to load data"); //change it to error in block
+
+      }
+    }
   }
 }
