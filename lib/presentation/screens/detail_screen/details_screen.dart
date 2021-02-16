@@ -3,26 +3,38 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app_with_BLoC/logic/blocs/cast_bloc/cast_bloc.dart';
+import 'package:movies_app_with_BLoC/data/models/movies_model/moviesAPI.dart';
 import 'package:movies_app_with_BLoC/logic/blocs/movie_bloc/movies_bloc.dart';
+import 'package:movies_app_with_BLoC/logic/blocs/search_bloc/search_bloc.dart';
+import 'package:movies_app_with_BLoC/logic/blocs/trending_bloc/trending_bloc.dart';
 import 'package:movies_app_with_BLoC/presentation/screens/detail_screen/cast_avatars.dart';
 import 'package:movies_app_with_BLoC/presentation/screens/detail_screen/row_of_custom_icons/icons_row.dart';
 
 import 'custom_appbar/Alternative_AppBar_create.dart';
 import 'row_of_image_and_title.dart';
 
+// ignore: must_be_immutable
 class DetailScreen extends StatelessWidget {
   final int index;
   final CachedNetworkImageProvider poster, cover;
+  final String tag;
+  Movies _movies;
 
-  DetailScreen({this.index, this.poster, this.cover});
+  DetailScreen({
+    this.index,
+    this.poster,
+    this.cover,
+    this.tag,
+  });
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<CastBloc>(context)
-        .add(FetchingCast(MoviesBloc.movies.results[index].id));
     var size = MediaQuery.of(context).size;
-    final results = MoviesBloc.movies.results;
+    if (tag.contains("search"))
+      _movies = SearchBloc.searchMovies;
+    else if (tag.contains("body"))
+      _movies = MoviesBloc.movies;
+    else if (tag.contains("trend")) _movies = TrendingBloc.trendingMovies;
     return Scaffold(
       backgroundColor: Colors.red[900],
       body: SafeArea(
@@ -34,7 +46,7 @@ class DetailScreen extends StatelessWidget {
                 children: [
                   //cover
                   Hero(
-                    tag: index,
+                    tag: tag,
                     child: Container(
                         width: size.width,
                         height: size.height / 2.6,
@@ -64,6 +76,7 @@ class DetailScreen extends StatelessWidget {
                           RowImageAndTitle(
                             index: index,
                             imageProvider: poster,
+                            movies: _movies,
                           ),
 
                           /////////////////////////////
@@ -77,6 +90,7 @@ class DetailScreen extends StatelessWidget {
                           ),
                           IconsRow(
                             index: index,
+                            movies: _movies,
                           ),
                           /////////////////////////////
                           /////////////////////////////
@@ -85,7 +99,7 @@ class DetailScreen extends StatelessWidget {
                           /////////////////////////////
                           Container(
                             padding: EdgeInsets.all(15),
-                            child: Text(results[index].overview),
+                            child: Text(_movies.results[index].overview ?? ""),
                           )
                         ],
                       ),
@@ -120,7 +134,7 @@ class DetailScreen extends StatelessWidget {
             ),
             //App bar
             CustomAppBar(
-              movie: MoviesBloc.movies.results[index],
+              movie:_movies.results[index],
               index: index,
             ),
           ]);

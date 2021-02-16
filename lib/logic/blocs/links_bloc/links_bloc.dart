@@ -36,10 +36,10 @@ class LinksBloc extends Bloc<LinksEvent, LinksState> {
           _movieKey = value.key;
         });
         _trailersRep.share(
-          movieKey: _movieKey,
-          index: event.index,
-          context: event.context,
-        );
+            movieKey: _movieKey,
+            index: event.index,
+            context: event.context,
+            movieName: event.movieName);
         yield SuccessLaunching();
       } catch (e) {
         yield ErrorLaunching(errorMessage: e.toString());

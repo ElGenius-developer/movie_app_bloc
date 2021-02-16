@@ -1,17 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app_with_BLoC/logic/blocs/movie_bloc/movies_bloc.dart';
+import 'package:movies_app_with_BLoC/data/models/movies_model/moviesAPI.dart';
 
 class RowImageAndTitle extends StatelessWidget {
   final int index;
   final CachedNetworkImageProvider imageProvider;
+  final Movies movies;
 
-  const RowImageAndTitle({this.index, this.imageProvider});
+  const RowImageAndTitle({this.index, this.imageProvider, this.movies});
 
   @override
   Widget build(BuildContext context) {
-    var movies = MoviesBloc.movies;
     var size = MediaQuery.of(context).size;
     return Container(
       width: size.width - 5,
@@ -83,7 +83,8 @@ class RowImageAndTitle extends StatelessWidget {
                     Container(
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
-                          movies.results[index].releaseDate + '  (Released)',
+                          movies.results[index].releaseDate ??
+                              '' + '  (Released)',
                         )),
                   ],
                 ),

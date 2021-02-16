@@ -4,17 +4,17 @@ class MoviesDetails {
   bool adult;
   String backdropPath;
   List<int> genreIds;
-  int id;
+  var id;
   String originalLanguage;
   String originalTitle;
   String overview;
-  double popularity;
+  var popularity;
   String posterPath;
   String releaseDate;
   String title;
   bool video;
   var voteAverage;
-  int voteCount;
+  var voteCount;
 
   MoviesDetails(
       {this.adult,
@@ -35,14 +35,18 @@ class MoviesDetails {
   MoviesDetails.fromJson(Map<String, dynamic> json) {
     if (json != null) {
       adult = json['adult'];
-      backdropPath = StaticData().imageUrlPrefix + json['backdrop_path'];
+      backdropPath = (json['backdrop_path'] == null)
+          ? StaticData().noImageUrl
+          : "${StaticData().imageUrlPrefix}${json['backdrop_path']}";
       genreIds = json['genre_ids'].cast<int>();
       id = json['id'];
       originalLanguage = json['original_language'];
       originalTitle = json['original_title'];
       overview = json['overview'];
       popularity = json['popularity'];
-      posterPath = StaticData().imageUrlPrefix + json['poster_path'];
+      posterPath = (json['poster_path'] == null)
+          ? StaticData().noImageUrl
+          : '${StaticData().imageUrlPrefix}${json['poster_path']}';
 
       releaseDate = json['release_date'];
       title = (json['title'] == null) ? "no title" : json['title'];

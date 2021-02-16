@@ -14,14 +14,14 @@ class CastAvatars extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width - 5,
-        height: MediaQuery.of(context).size.height / 5,
+        height: MediaQuery.of(context).size.height / 3.8,
         child: Card(
           child: Container(
             width: MediaQuery.of(context).size.width - 15,
             height: MediaQuery.of(context).size.height / 8,
             child: BlocBuilder<CastBloc, CastState>(
               builder: (context, state) {
-                if (state is LoadingCast) {
+                 if (state is LoadingCast) {
                   return Container(
                       height: 5,
                       alignment: Alignment.center,
@@ -38,7 +38,7 @@ class CastAvatars extends StatelessWidget {
                           : state.credits.cast.length,
                       // padding: EdgeInsets.only(left: 10),
                       itemBuilder: (context, index) {
-                        var image = state.credits.cast[index].profilePath;
+                        var image = CastBloc.credits.cast[index].profilePath;
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           child: Column(
@@ -48,8 +48,7 @@ class CastAvatars extends StatelessWidget {
                               CircleAvatar(
                                   radius: 48,
                                   backgroundImage: CachedNetworkImageProvider(
-                                      (state.credits.cast[index].profilePath ==
-                                              null)
+                                      (image==null)
                                           ? StaticData().noImageUrl
                                           : StaticData().imageUrlPrefix +
                                               image)),
@@ -58,6 +57,7 @@ class CastAvatars extends StatelessWidget {
                                 child: Text(
                                   "${state.credits.cast[index].name}",
                                   textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontStyle: FontStyle.italic,
                                   ),

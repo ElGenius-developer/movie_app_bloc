@@ -3,6 +3,7 @@ import 'cast.dart';
 class Credits {
   int id;
   List<Cast> cast;
+  String error;
 
   Credits({
     this.id,
@@ -18,4 +19,7 @@ class Credits {
       });
     }
   }
+  Credits.withError(String errorValue)
+      : cast = List(),
+        error = errorValue;
 }

@@ -1,7 +1,7 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app_with_BLoC/logic/blocs/links_bloc/links_bloc.dart';
-import 'package:toast/toast.dart';
 
 class YouTubeButton extends StatelessWidget {
   final int movieId;
@@ -61,7 +61,8 @@ class YouTubeButton extends StatelessWidget {
           var state = context.read<LinksBloc>().state;
           print(state.toString());
           if (state is ErrorLaunching) {
-            Toast.show("Sorry This Link cannot be launch", context);
+            BotToast.showSimpleNotification(
+                title:"Sorry This Link cannot be launch",duration: Duration(seconds: 2)  );
           }
         });
   }

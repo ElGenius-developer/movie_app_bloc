@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
 import 'package:movies_app_with_BLoC/data/models/trailers_model/trailersAPI.dart';
-import 'package:movies_app_with_BLoC/logic/blocs/movie_bloc/movies_bloc.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -19,26 +18,20 @@ class TrailersRepository {
       'language': 'en-US',
     };
     String videoURL = (_constants.baseUrl +
-        "$movieID/"
+        "movie/$movieID/"
             'videos');
-    // print(videoURL);
-
+ 
     final res = await Dio().get(videoURL, queryParameters: parameters);
     if (res.statusCode == 200) {
       _trailers = Trailers.fromJson(res.data);
     } else {
       throw Exception("Failed to load data"); //or e
     }
-    // notifyListeners();
 
     return _trailers.results[0];
   }
 
   void launchYoutube({String movieKey}) async {
-    /* String movieKey;
-    await getVideoUrl(movieID).whenComplete(() {
-      movieKey = _trailers.results.first.key;
-    });*/
 
     if (Platform.isIOS) {
       if (await canLaunch(
@@ -58,12 +51,12 @@ class TrailersRepository {
     }
   }
 
-  Future share({BuildContext context, int index, String movieKey}) async {
-    final resultMovies = MoviesBloc.movies.results;
+  Future share({BuildContext context, int index, String movieKey,String movieName}) async {
+
 
     final RenderBox box = context.findRenderObject();
     Share.share('${StaticData().baseYoutubeUrl}' + '$movieKey',
-        subject: resultMovies[index].title,
+        subject: movieName,
         sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
   }
 }

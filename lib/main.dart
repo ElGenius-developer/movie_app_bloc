@@ -1,16 +1,19 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
-import 'package:movies_app_with_BLoC/logic/blocs/cast_bloc/cast_bloc.dart';
-import 'package:movies_app_with_BLoC/logic/blocs/links_bloc/links_bloc.dart';
-import 'package:movies_app_with_BLoC/logic/blocs/movie_bloc/movies_bloc.dart';
-import 'package:movies_app_with_BLoC/logic/blocs/trending_bloc/trending_bloc.dart';
-import 'package:movies_app_with_BLoC/presentation/routers/app_router.dart';
 
+import 'data/constants/static_data.dart';
+import 'logic/blocs/cast_bloc/cast_bloc.dart';
+import 'logic/blocs/links_bloc/links_bloc.dart';
+import 'logic/blocs/movie_bloc/movies_bloc.dart';
+import 'logic/blocs/search_bloc/search_bloc.dart';
+import 'logic/blocs/trending_bloc/trending_bloc.dart';
 import 'logic/cubits/Internet_cubit/internet_cubit.dart';
+import 'presentation/routers/app_router.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   final connectivity = Connectivity();
 
   runApp(MultiBlocProvider(providers: [
@@ -29,6 +32,9 @@ void main() {
     ),
     BlocProvider<TrendingBloc>(
       create: (context) => TrendingBloc()..add(GetTrendingMovies()),
+    ),
+    BlocProvider<SearchBloc>(
+      create: (context) => SearchBloc(),
     ),
   ], child: MovieApp()));
 }

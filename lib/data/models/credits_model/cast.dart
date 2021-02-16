@@ -28,18 +28,20 @@ class Cast {
       this.order});
 
   Cast.fromJson(Map<String, dynamic> json) {
-    adult = json['adult'];
-    gender = json['gender'];
-    id = json['id'];
-    knownForDepartment = json['known_for_department'];
-    name = json['name'];
-    originalName = json['original_name'];
-    popularity = json['popularity'];
-    profilePath = json['profile_path'];
-    castId = json['cast_id'];
-    character = json['character'];
-    creditId = json['credit_id'];
-    order = json['order'];
+    if (json != null) {
+      adult = json['adult'];
+      gender = json['gender'];
+      id = json['id'];
+      knownForDepartment = json['known_for_department'];
+      name = json['name'];
+      originalName = json['original_name'];
+      popularity = json['popularity'];
+      profilePath = json['profile_path'];
+      castId = json['cast_id'];
+      character = json['character'];
+      creditId = json['credit_id'];
+      order = json['order'];
+    }
   }
 
   Map<String, dynamic> toJson() {

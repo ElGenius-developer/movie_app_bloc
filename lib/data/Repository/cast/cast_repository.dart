@@ -7,20 +7,21 @@ class CastRepository {
 
   Future<Credits> getData({int movieID}) async {
     Credits _credits;
-    String url = (_constants.baseUrl + "$movieID" + '/credits');
+    String url = (_constants.baseUrl + "movie/$movieID" + '/credits');
 
     var parameters = {
       'api_key': _constants.apiKey,
       'language': "en-US",
     };
 
-    final res = await Dio().get(url, queryParameters: parameters);
+    try {
+      final res = await Dio().get(url, queryParameters: parameters);
 
-    if (res.statusCode == 200) {
       _credits = Credits.fromJson(res.data);
-    } else {
-      throw Exception("Failed to load data"); //change it to error in block
-
+      if(_credits==null)_credits=Credits.withError("error");
+    } catch (error, stacktrace) {
+      print("Exception occured: $error stackTrace: $stacktrace");
+      _credits = Credits.withError(error);
     }
 
     return _credits;

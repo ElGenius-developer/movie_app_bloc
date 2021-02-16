@@ -10,7 +10,7 @@ class MoviesRepository extends MoviesRepositoryData {
 
   @override
   Future<Movies> getData({String category, pageNumber}) async {
-    String url = (_constants.baseUrl + category);
+    String url = (_constants.baseUrl + "movie/$category");
 
     var parameters = {
       'api_key': _constants.apiKey,
@@ -33,7 +33,7 @@ class MoviesRepository extends MoviesRepositoryData {
   @override
   Future<Movies> getTrendingMovies() async {
     {
-      String url = (_constants.trendingURL);
+      String url = (_constants.baseUrl+_constants.trendingURL);
 
       var parameters = {
         'api_key': _constants.apiKey,

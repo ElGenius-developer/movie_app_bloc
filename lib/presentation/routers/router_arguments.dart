@@ -4,6 +4,6 @@ class ScreenArguments {
   final int index;
   final CachedNetworkImageProvider poster;
   final CachedNetworkImageProvider cover;
-
-  ScreenArguments(this.index, this.poster, this.cover);
+  final String tag;
+  ScreenArguments(this.index, this.poster, this.cover, this.tag,);
 }

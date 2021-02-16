@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app_with_BLoC/data/models/movies_model/moviesAPI.dart';
+import 'package:movies_app_with_BLoC/logic/blocs/cast_bloc/cast_bloc.dart';
+import 'package:movies_app_with_BLoC/logic/blocs/movie_bloc/movies_bloc.dart';
 import 'package:movies_app_with_BLoC/presentation/routers/router_arguments.dart';
 import 'package:movies_app_with_BLoC/presentation/screens/home_screen/movie_card_body.dart';
 
 class MovieCard extends StatelessWidget {
   final Movies movies;
-
   const MovieCard({Key key, this.movies}) : super(key: key);
 
   @override
@@ -27,14 +28,9 @@ class MovieCard extends StatelessWidget {
           CachedNetworkImageProvider poster, cover;
 
           poster = CachedNetworkImageProvider(
-              (movies.results[index].posterPath == null)
-                  ? StaticData().noImageUrl
-                  : movies.results[index].posterPath);
+              movies.results[index].posterPath);
           cover = CachedNetworkImageProvider(
-            (movies.results[index].backdropPath == null)
-                ? StaticData().noImageUrl
-                : movies.results[index].backdropPath,
-          );
+              movies.results[index].backdropPath);
 
           return Container(
             alignment: Alignment.center,
@@ -48,8 +44,10 @@ class MovieCard extends StatelessWidget {
                   poster: poster,
                 ),
                 onTap: () {
+                      BlocProvider.of<CastBloc>(context)
+        .add(FetchingCast(MoviesBloc.movies.results[index].id));
                   Navigator.pushNamed(context, "/detailScreen",
-                      arguments: ScreenArguments(index, poster, cover));
+                      arguments: ScreenArguments(index, poster, cover,"body:$index"));
                 }),
           );
         });

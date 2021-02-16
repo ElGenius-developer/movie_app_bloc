@@ -10,7 +10,7 @@ part 'cast_event.dart';
 part 'cast_state.dart';
 
 class CastBloc extends Bloc<CastEvent, CastState> {
-  var credits = Credits();
+ static Credits credits = Credits();
   var _castRepo = CastRepository();
 
   CastBloc() : super(CastInitial());
@@ -19,10 +19,12 @@ class CastBloc extends Bloc<CastEvent, CastState> {
   Stream<CastState> mapEventToState(
     CastEvent event,
   ) async* {
-    if (event is FetchingCast) {
+     if (event is FetchingCast) {
       yield LoadingCast();
       try {
         credits = await _castRepo.getData(movieID: event.movieID);
+        if(credits.cast==null)yield ErrorLoadCast("failed to load");
+        else
         yield SuccessLoadCast(credits);
       } catch (error) {
         yield ErrorLoadCast(error);

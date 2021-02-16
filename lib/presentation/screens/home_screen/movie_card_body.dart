@@ -12,7 +12,7 @@ class MovieCardBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(alignment: Alignment.bottomCenter, children: [
       Hero(
-        tag: index,
+        tag: "body:$index",
         child: Container(
           width: width / 1.35 /*248*/,
           height: height / 2,

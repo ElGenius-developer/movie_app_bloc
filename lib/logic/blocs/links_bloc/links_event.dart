@@ -16,10 +16,12 @@ class LaunchTrailer extends LinksEvent {
 class ShareMovie extends LinksEvent {
   final int movieID;
   final int index;
+  final String movieName;
   final BuildContext context;
 
   ShareMovie(
-      {@required this.index, @required this.context, @required this.movieID});
+      {@required this.movieName,
+        @required this.index, @required this.context, @required this.movieID});
 
   List<Object> get props => [movieID];
 }

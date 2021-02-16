@@ -5,6 +5,8 @@ class Movies {
   List<MoviesDetails> results;
   int totalPages;
   int totalResults;
+  String error;
+
 
   Movies(
       {this.page = 1,
@@ -23,4 +25,8 @@ class Movies {
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
   }
+
+  Movies.withError(String errorValue):
+        results = List(),
+        error = errorValue;
 }

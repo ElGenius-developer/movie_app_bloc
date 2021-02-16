@@ -8,8 +8,8 @@ class StaticData {
   final String apiKey = '944da4297799bd63a31aa54b2017eb8b';
 
 //you can get your own api key from  https://themoviedb.org/
-  final String baseUrl = 'https://api.themoviedb.org/3/movie/';
-  final String trendingURL = "https://api.themoviedb.org/3/trending/movie/week";
+  final String baseUrl = 'https://api.themoviedb.org/3/';
+  final String trendingURL = "trending/movie/week";
 
   final String baseYoutubeUrl = 'https://www.youtube.com/watch?v=';
 
@@ -29,19 +29,25 @@ class StaticData {
   ];
 
   ThemeData darkThemeData = ThemeData(
+
     visualDensity: VisualDensity.adaptivePlatformDensity,
     primaryColor: Colors.red[800],
-    cardColor: Colors.white30,
+    cardColor: Color(0xff1B222F),
+    // backgroundColor:Color(0xff1B222F) ,
+  scaffoldBackgroundColor: Color(0xff1B222F),
+    primaryColorDark: Color(0xff1B222F),
     canvasColor: Color(0xff1B222F),
     buttonTheme: ButtonThemeData(
       buttonColor: Colors.red[800],
     ),
     appBarTheme: AppBarTheme(
       color: Colors.red[900],
+
     ),
     colorScheme: ColorScheme.dark(),
     textSelectionColor: Colors.white,
   );
+
   ThemeData lightThemData = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
     primaryColor: Colors.red,
@@ -52,6 +58,7 @@ class StaticData {
     ),
     appBarTheme: AppBarTheme(
       color: Colors.red[700],
+
     ),
     colorScheme: ColorScheme.light(),
     textSelectionColor: Colors.black,
