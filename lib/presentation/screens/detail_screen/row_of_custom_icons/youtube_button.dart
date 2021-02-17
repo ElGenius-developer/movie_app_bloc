@@ -62,7 +62,8 @@ class YouTubeButton extends StatelessWidget {
           print(state.toString());
           if (state is ErrorLaunching) {
             BotToast.showSimpleNotification(
-                title:"Sorry This Link cannot be launch",duration: Duration(seconds: 2)  );
+                title: "Sorry This Link cannot be launch",
+                duration: Duration(seconds: 2));
           }
         });
   }

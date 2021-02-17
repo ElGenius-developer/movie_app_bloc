@@ -6,9 +6,10 @@ import 'package:movies_app_with_BLoC/logic/blocs/cast_bloc/cast_bloc.dart';
 
 class CastAvatars extends StatelessWidget {
   final int index;
-  final CachedNetworkImageProvider imageProvider;
 
-  CastAvatars({@required this.index, @required this.imageProvider});
+  CastAvatars({
+    @required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +22,12 @@ class CastAvatars extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 8,
             child: BlocBuilder<CastBloc, CastState>(
               builder: (context, state) {
-                 if (state is LoadingCast) {
+                if (state is LoadingCast) {
                   return Container(
                       height: 5,
                       alignment: Alignment.center,
                       padding: EdgeInsets.symmetric(horizontal: 35),
-                      child: LinearProgressIndicator(
+                      child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation(Colors.red.shade700),
                       ));
                 } else if (state is SuccessLoadCast) {
@@ -48,7 +49,7 @@ class CastAvatars extends StatelessWidget {
                               CircleAvatar(
                                   radius: 48,
                                   backgroundImage: CachedNetworkImageProvider(
-                                      (image==null)
+                                      (image == null)
                                           ? StaticData().noImageUrl
                                           : StaticData().imageUrlPrefix +
                                               image)),

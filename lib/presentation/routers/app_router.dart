@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app_with_BLoC/presentation/routers/router_arguments.dart';
-import 'package:movies_app_with_BLoC/presentation/screens/detail_screen/details_screen.dart';
-import 'package:movies_app_with_BLoC/presentation/screens/home_screen/home_screen.dart';
-import 'package:movies_app_with_BLoC/presentation/screens/search_screen/search_screen.dart';
+import '../../presentation/routers/router_arguments.dart';
+import '../../presentation/screens/detail_screen/details_screen.dart';
+import '../../presentation/screens/home_screen/home_screen.dart';
+import '../../presentation/screens/search_screen/search_screen.dart';
 
 class AppRouter {
   Route onGeneratedRoute(RouteSettings routeSettings) {
@@ -18,9 +18,7 @@ class AppRouter {
       case "/detailScreen":
         return CupertinoPageRoute(
           builder: (context) => DetailScreen(
-            poster: args.poster,
             index: args.index,
-            cover: args.cover,
             tag: args.tag,
           ),
         );

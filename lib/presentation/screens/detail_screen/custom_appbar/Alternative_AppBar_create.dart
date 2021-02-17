@@ -47,11 +47,10 @@ class CustomAppBar extends StatelessWidget {
             ),
             onPressed: () {
               context.read<LinksBloc>().add(ShareMovie(
-                    index: index,
-                    context: context,
-                    movieID: movie.id,
-                    movieName: movie.title
-                  ));
+                  index: index,
+                  context: context,
+                  movieID: movie.id,
+                  movieName: movie.title));
             },
           ),
         ],

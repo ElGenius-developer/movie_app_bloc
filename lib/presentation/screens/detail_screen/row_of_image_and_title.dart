@@ -1,14 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app_with_BLoC/data/models/movies_model/moviesAPI.dart';
+import 'package:movies_app_with_BLoC/presentation/widgets/my_cached_image_network.dart';
 
 class RowImageAndTitle extends StatelessWidget {
   final int index;
-  final CachedNetworkImageProvider imageProvider;
   final Movies movies;
 
-  const RowImageAndTitle({this.index, this.imageProvider, this.movies});
+  const RowImageAndTitle({this.index, this.movies});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,10 @@ class RowImageAndTitle extends StatelessWidget {
               padding: EdgeInsets.only(left: 10),
               width: size.width / 2.5,
               height: size.height / 2,
-              child: Image(fit: BoxFit.scaleDown, image: imageProvider),
+              child: MyCachedImageNetwork(
+                boxFit: BoxFit.scaleDown,
+                url: movies.results[index].posterPath,
+              ),
             ),
             //the second row (image , title, language , release date
             Expanded(
