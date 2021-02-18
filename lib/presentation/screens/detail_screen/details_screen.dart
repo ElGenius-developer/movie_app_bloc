@@ -1,15 +1,16 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../presentation/widgets/my_cached_image_network.dart';
-import '../../../data/models/movies_model/moviesAPI.dart';
+import 'package:movies_app_with_BLoC/data/models/movies_model/movies_details.dart';
+import 'package:movies_app_with_BLoC/logic/blocs/like_bloc/like_bloc.dart';
+import 'package:movies_app_with_BLoC/presentation/screens/detail_screen/like_button/LikeButton_screen.dart';
 import '../../../logic/blocs/movie_bloc/movies_bloc.dart';
 import '../../../logic/blocs/search_bloc/search_bloc.dart';
 import '../../../logic/blocs/trending_bloc/trending_bloc.dart';
 import '../../../presentation/screens/detail_screen/cast_avatars.dart';
 import '../../../presentation/screens/detail_screen/row_of_custom_icons/icons_row.dart';
+import '../../../presentation/widgets/my_cached_image_network.dart';
 import 'custom_appbar/Alternative_AppBar_create.dart';
 import 'row_of_image_and_title.dart';
 
@@ -17,7 +18,7 @@ import 'row_of_image_and_title.dart';
 class DetailScreen extends StatelessWidget {
   final int index;
   final String tag;
-  Movies _movies;
+  List<MoviesDetails> _movies;
 
   DetailScreen({
     this.index,
@@ -28,10 +29,11 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     if (tag.contains("search"))
-      _movies = SearchBloc.searchMovies;
+      _movies = SearchBloc.searchMovies.results;
     else if (tag.contains("body"))
-      _movies = MoviesBloc.movies;
-    else if (tag.contains("trend")) _movies = TrendingBloc.trendingMovies;
+      _movies = MoviesBloc.movies.results;
+    else if (tag.contains("trend")) _movies = TrendingBloc.trendingMovies.results;
+    else _movies= context.read<LikeBloc>().box.values.toList();
     return Scaffold(
       backgroundColor: Colors.red[900],
       body: SafeArea(
@@ -59,7 +61,7 @@ class DetailScreen extends StatelessWidget {
                               height: size.height / 2.6,
                               child: MyCachedImageNetwork(
                                 boxFit: BoxFit.fitHeight,
-                                url: _movies.results[index].backdropPath,
+                                url: _movies[index].backdropPath,
                               )),
                         ),
                         Padding(
@@ -67,46 +69,40 @@ class DetailScreen extends StatelessWidget {
                           child: Align(
                             alignment: Alignment(1, 0.85),
                             child: Container(
-                                width: size.width / 6.5,
-                                height: size.height / 13.1,
-                                decoration: BoxDecoration(
-                                    color: Colors.red.shade900,
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.white12,
-                                          offset: Offset(.5, .5),
-                                          blurRadius: 5,
-                                          spreadRadius: 2),
-                                      BoxShadow(
-                                          color: Colors.white12,
-                                          offset: Offset(-.5, .5),
-                                          blurRadius: 5,
-                                          spreadRadius: 2),
-                                      BoxShadow(
-                                          color: Colors.white12,
-                                          offset: Offset(.5, -.5),
-                                          blurRadius: 2,
-                                          spreadRadius: 2),
-                                      BoxShadow(
-                                          color: Colors.black54,
-                                          offset: Offset(-.5, -.5),
-                                          blurRadius: .5,
-                                          spreadRadius: 2),
-                                    ],
-                                    shape: BoxShape.circle),
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    CupertinoIcons.heart,
-                                    size: 30,
-                                    color: Colors.white,
-                                  ),
-                                )),
+                              width: size.width / 6.5,
+                              height: size.height / 13.1,
+                              decoration: BoxDecoration(
+                                  color: Colors.red.shade900,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.white12,
+                                        offset: Offset(.5, .5),
+                                        blurRadius: 5,
+                                        spreadRadius: 2),
+                                    BoxShadow(
+                                        color: Colors.white12,
+                                        offset: Offset(-.5, .5),
+                                        blurRadius: 5,
+                                        spreadRadius: 2),
+                                    BoxShadow(
+                                        color: Colors.white12,
+                                        offset: Offset(.5, -.5),
+                                        blurRadius: 2,
+                                        spreadRadius: 2),
+                                    BoxShadow(
+                                        color: Colors.black54,
+                                        offset: Offset(-.5, -.5),
+                                        blurRadius: .5,
+                                        spreadRadius: 2),
+                                  ],
+                                  shape: BoxShape.circle),
+                              child: LikeButton(movie: _movies[index]),
+                            ),
                           ),
                         ),
                         //App bar
                         CustomAppBar(
-                          movie: _movies.results[index],
+                          movie: _movies[index],
                           index: index,
                         ),
                       ],
@@ -129,17 +125,16 @@ class DetailScreen extends StatelessWidget {
                     ),
                     IconsRow(
                       index: index,
-                      movies: _movies,
+                      resultsMovies: _movies,
                     ),
                     Container(
                       padding: EdgeInsets.all(15),
-                      child: Text(_movies.results[index].overview ?? "",
-                      style: Theme.of(context).textTheme.bodyText2.copyWith(
-                        height: 1.5,
-                        fontSize: 15,
-                        fontStyle: FontStyle.italic
-                      ),
-
+                      child: Text(
+                        _movies[index].overview ?? "",
+                        style: Theme.of(context).textTheme.bodyText2.copyWith(
+                            height: 1.5,
+                            fontSize: 15,
+                            fontStyle: FontStyle.italic),
                       ),
                     )
                   ],

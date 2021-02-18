@@ -1,18 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app_with_BLoC/data/models/movies_model/moviesAPI.dart';
+import 'package:movies_app_with_BLoC/data/models/movies_model/movies_details.dart';
 import 'package:movies_app_with_BLoC/presentation/screens/detail_screen/row_of_custom_icons/youtube_button.dart';
 
 import 'custom_icons.dart';
 
 class IconsRow extends StatelessWidget {
   final int index;
-  final Movies movies;
-  const IconsRow({Key key, this.index, this.movies}) : super(key: key);
+  final List<MoviesDetails> resultsMovies;
+
+  const IconsRow({Key key, this.index, this.resultsMovies}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var resultsMovies = movies.results;
 
     return Container(
       width: MediaQuery.of(context).size.width - 5,

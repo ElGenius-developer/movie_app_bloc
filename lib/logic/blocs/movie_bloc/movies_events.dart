@@ -1,25 +1,17 @@
 part of 'movies_bloc.dart';
 
-abstract class MoviesEvent extends Equatable {
-  const MoviesEvent();
-}
+abstract class MoviesEvent {}
 
 class FetchingData extends MoviesEvent {
   final String category;
 
   FetchingData({@required this.category});
-
-  @override
-  List<Object> get props => [category];
 }
 
 class ChangeCategory extends MoviesEvent {
   final String category;
 
   ChangeCategory({@required this.category});
-
-  @override
-  List<Object> get props => [category];
 }
 
 class ChangePageNumber extends MoviesEvent {
@@ -30,7 +22,4 @@ class ChangePageNumber extends MoviesEvent {
     @required this.category,
     this.pageNumber,
   });
-
-  @override
-  List<Object> get props => [category];
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -20,7 +21,7 @@ class TrailersRepository {
     String videoURL = (_constants.baseUrl +
         "movie/$movieID/"
             'videos');
- 
+
     final res = await Dio().get(videoURL, queryParameters: parameters);
     if (res.statusCode == 200) {
       _trailers = Trailers.fromJson(res.data);
@@ -32,7 +33,6 @@ class TrailersRepository {
   }
 
   void launchYoutube({String movieKey}) async {
-
     if (Platform.isIOS) {
       if (await canLaunch(
           'youtube://${_constants.baseYoutubeUrl}' + movieKey)) {
@@ -51,9 +51,11 @@ class TrailersRepository {
     }
   }
 
-  Future share({BuildContext context, int index, String movieKey,String movieName}) async {
-
-
+  Future share(
+      {BuildContext context,
+      int index,
+      String movieKey,
+      String movieName}) async {
     final RenderBox box = context.findRenderObject();
     Share.share('${StaticData().baseYoutubeUrl}' + '$movieKey',
         subject: movieName,

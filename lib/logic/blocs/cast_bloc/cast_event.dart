@@ -1,6 +1,6 @@
 part of 'cast_bloc.dart';
 
-abstract class CastEvent extends Equatable {
+abstract class CastEvent {
   const CastEvent();
 }
 
@@ -9,7 +9,4 @@ class FetchingCast extends CastEvent {
   final int movieID;
 
   FetchingCast(this.movieID);
-
-  @override
-  List<Object> get props => [];
 }

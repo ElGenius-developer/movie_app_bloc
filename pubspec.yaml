@@ -18,7 +18,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+ sdk: ">=2.6.0 <3.0.0"
+
 
 dependencies:
   flutter:
@@ -32,20 +33,26 @@ dependencies:
   dio:
   flutter_bloc:
   icon_shadow: ^1.0.1
-  equatable:
-  connectivity_plus: ^0.8.0
+  connectivity_plus: ^0.8.1
   bot_toast: ^3.0.5
-  search_page: ^1.4.0
-  hydrated_bloc: ^6.1.0
   carousel_slider: ^3.0.0
   share: ^0.6.5+4
   url_launcher: ^5.7.10
+  flutter_native_splash: ^0.3.0
   liquid_progress_indicator:
   flutter_launcher_icons: any
+  hive: ^1.4.4+1
+  hive_flutter: ^0.3.1
+  path_provider: ^1.6.27
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  hive_generator: ^0.8.2
+  build_runner:
+
+
+
 
 flutter_icons:
   image_path: "assets/logo.png"
@@ -91,3 +98,66 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_native_splash:
+
+ # This package generates native code to customize Flutter's default white native splash screen
+ # with background color and splash image.
+ # Customize the parameters below, and run the following command in the terminal:
+ # flutter pub run flutter_native_splash:create
+ # To restore Flutter's default white splash screen, run the following command in the terminal:
+ # flutter pub run flutter_native_splash:remove
+
+ # color is the only required parameter.  It sets the background color of your splash screen.
+ color: "#E5E7E9"
+
+ # Optional parameters are listed below.  To enable a parameter, uncomment the line by removing
+ # the leading # character.
+
+ # The image parameter allows you to specify an image used in the splash screen.  It must be a
+ # png file.
+ image: assets/logo.png
+
+ # The color_dark and image_dark are parameters that set the color and image when the device is
+ # in dark mode.  If they are not specified, the app will use the color and image above.
+ # If the image_dark parameter is specified, color_dark must be specified.
+ color_dark: "#042a49"
+ image_dark: assets/logo.png
+
+ # The android and ios parameters can be used to disable generating a splash screen on a given
+ # platform.
+ android: true
+ ios: true
+ #web: false
+
+ # The position of the splash image can be set with android_gravity, ios_content_mode, and
+ # web_image_mode parameters.  All default to center.
+ #
+ # android_gravity can be one of the following Android Gravity (see
+ # https://developer.android.com/reference/android/view/Gravity): bottom, center,
+ # center_horizontal, center_vertical, clip_horizontal, clip_vertical, end, fill, fill_horizontal,
+ # fill_vertical, left, right, start, or top.
+ #android_gravity: center
+ #
+ # ios_content_mode can be one of the following iOS UIView.ContentMode (see
+ # https://developer.apple.com/documentation/uikit/uiview/contentmode): scaleToFill,
+ # scaleAspectFit, scaleAspectFill, center, top, bottom, left, right, topLeft, topRight,
+ # bottomLeft, or bottomRight.
+ #ios_content_mode: center
+ #
+ # web_image_mode can be one of the following modes: center, contain, stretch, and cover.
+ #web_image_mode: center
+
+ # To hide the notification bar, use the fullscreen parameter.  Has no affect in web since web
+ # has no notification bar.  Defaults to false.
+ # NOTE: Unlike Android, iOS will not automatically show the notification bar when the app loads.
+ #       To show the notification bar, add the following code to your Flutter app:
+ #       WidgetsFlutterBinding.ensureInitialized();
+ #       SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom, SystemUiOverlay.top]);
+ fullscreen: true
+
+ # If you have changed the name(s) of your info.plist file(s), you can specify the filename(s)
+ # with the info_plist_files parameter.  Remove only the # characters in the three lines below,
+ # do not remove any spaces:
+ #info_plist_files:
+ #  - 'ios/Runner/Info-Debug.plist'
+ #  - 'ios/Runner/Info-Release.plist'

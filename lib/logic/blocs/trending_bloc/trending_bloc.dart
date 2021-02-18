@@ -12,6 +12,7 @@ part 'trending_state.dart';
 class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
   var _repository = MoviesRepository();
   static Movies trendingMovies;
+
   TrendingBloc() : super(TrendingInitial());
 
   @override

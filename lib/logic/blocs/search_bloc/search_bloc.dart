@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../data/Repository/search/search_repository.dart';
@@ -13,27 +12,29 @@ part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc() : super(SearchInitial());
-  final _searchRepository=SearchRepository();
-  static Movies _searchMovies=Movies();
-  static final controller =TextEditingController(text: '');
+  final _searchRepository = SearchRepository();
+  static Movies _searchMovies = Movies();
+  static final controller = TextEditingController(text: '');
+
   static Movies get searchMovies => _searchMovies;
+
   static List<MoviesDetails> get searchMoviesResults => _searchMovies.results;
 
   @override
   Stream<SearchState> mapEventToState(
     SearchEvent event,
   ) async* {
+    if (event is FetchSearchResults) {
+      yield SearchLoading();
 
-    if (event is FetchSearchResults ) {
-       yield SearchLoading();
-
-       try {
-        _searchMovies=await  _searchRepository.getSearchMovies(query: event.query);
-        if(_searchMovies.results.isEmpty) yield SearchError(error: "no data");
+      try {
+        _searchMovies =
+            await _searchRepository.getSearchMovies(query: event.query);
+        if (_searchMovies.results.isEmpty)
+          yield SearchError(error: "no data");
         else
-        yield SearchSuccess(movies: _searchMovies);
-       } catch (error) {
-
+          yield SearchSuccess(movies: _searchMovies);
+      } catch (error) {
         yield SearchError(error: error.toString());
       }
     } else if (event is FetchNewSearchResults) {

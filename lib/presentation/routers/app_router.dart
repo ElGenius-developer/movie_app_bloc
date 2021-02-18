@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../presentation/routers/router_arguments.dart';
-import '../../presentation/screens/detail_screen/details_screen.dart';
-import '../../presentation/screens/home_screen/home_screen.dart';
-import '../../presentation/screens/search_screen/search_screen.dart';
+import 'package:movies_app_with_BLoC/presentation/routers/router_arguments.dart';
+import 'package:movies_app_with_BLoC/presentation/screens/detail_screen/details_screen.dart';
+import 'package:movies_app_with_BLoC/presentation/screens/favourite_list_screen/favourite_list.dart';
+import 'package:movies_app_with_BLoC/presentation/screens/home_screen/home_screen.dart';
+import 'package:movies_app_with_BLoC/presentation/screens/search_screen/search_screen.dart';
+
 
 class AppRouter {
   Route onGeneratedRoute(RouteSettings routeSettings) {
@@ -26,6 +28,11 @@ class AppRouter {
       case "/searchScreen":
         return CupertinoPageRoute(
           builder: (context) => SearchScreen(),
+        );
+        break;
+      case "/favourites":
+        return CupertinoPageRoute(
+          builder: (context) => FavouriteList(),
         );
         break;
       default:

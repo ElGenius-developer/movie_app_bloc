@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app_with_BLoC/data/models/movies_model/moviesAPI.dart';
+import 'package:movies_app_with_BLoC/data/models/movies_model/movies_details.dart';
 import 'package:movies_app_with_BLoC/presentation/widgets/my_cached_image_network.dart';
 
 class RowImageAndTitle extends StatelessWidget {
   final int index;
-  final Movies movies;
+  final List<MoviesDetails> movies;
 
   const RowImageAndTitle({this.index, this.movies});
 
@@ -24,7 +24,7 @@ class RowImageAndTitle extends StatelessWidget {
               height: size.height / 2,
               child: MyCachedImageNetwork(
                 boxFit: BoxFit.scaleDown,
-                url: movies.results[index].posterPath,
+                url: movies[index].posterPath,
               ),
             ),
             //the second row (image , title, language , release date
@@ -40,7 +40,7 @@ class RowImageAndTitle extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.only(top: 15),
                       child: Text(
-                        "${movies.results[index].title}",
+                        "${movies[index].title}",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             fontSize: 21,
@@ -72,7 +72,7 @@ class RowImageAndTitle extends StatelessWidget {
                                   ]),
                               children: [
                             TextSpan(
-                                text: movies.results[index].originalLanguage,
+                                text: movies[index].originalLanguage,
                                 style: TextStyle(
                                     color: Colors.red[700],
                                     shadows: [
@@ -85,8 +85,7 @@ class RowImageAndTitle extends StatelessWidget {
                     Container(
                         padding: EdgeInsets.only(top: 10),
                         child: Text(
-                          movies.results[index].releaseDate ??
-                              '' + '  (Released)',
+                          movies[index].releaseDate ?? '' + '  (Released)',
                         )),
                   ],
                 ),

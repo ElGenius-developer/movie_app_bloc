@@ -19,6 +19,7 @@ class Credits {
       });
     }
   }
+
   Credits.withError(String errorValue)
       : cast = List(),
         error = errorValue;

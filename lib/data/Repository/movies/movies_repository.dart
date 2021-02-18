@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:movies_app_with_BLoC/data/Repository/movies/movies_repository_data.dart';
 import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
@@ -15,7 +17,7 @@ class MoviesRepository extends MoviesRepositoryData {
     var parameters = {
       'api_key': _constants.apiKey,
       'language': "en-US",
-      'page': 1 /*(pageNumber == null) ? 1 : pageNumber,*/
+      'page': pageNumber ?? 1 /*(pageNumber == null) ? 1 : pageNumber,*/
     };
 
     final res = await Dio().get(url, queryParameters: parameters);
@@ -33,7 +35,7 @@ class MoviesRepository extends MoviesRepositoryData {
   @override
   Future<Movies> getTrendingMovies() async {
     {
-      String url = (_constants.baseUrl+_constants.trendingURL);
+      String url = (_constants.baseUrl + _constants.trendingURL);
 
       var parameters = {
         'api_key': _constants.apiKey,

@@ -3,15 +3,17 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../logic/blocs/cast_bloc/cast_bloc.dart';
-import '../../../widgets/my_cached_image_network.dart';
+
 import '../../../../data/constants/static_data.dart';
+import '../../../../logic/blocs/cast_bloc/cast_bloc.dart';
 import '../../../../logic/blocs/trending_bloc/trending_bloc.dart';
 import '../../../routers/router_arguments.dart';
+import '../../../widgets/my_cached_image_network.dart';
 
 class TrendingMoviesContainer extends StatelessWidget {
-
-  const TrendingMoviesContainer({Key key,}) : super(key: key);
+  const TrendingMoviesContainer({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class TrendingMoviesContainer extends StatelessWidget {
                     height: size.height / 5, //165,
                     child: CarouselSlider(
                         items: List.generate(
-                    movies.results.length ?? 0,
+                          movies.results.length ?? 0,
                           (index) => GestureDetector(
                             child: Stack(
                               alignment: Alignment.center,
@@ -61,27 +63,30 @@ class TrendingMoviesContainer extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                ////movie title//////
+                                //// [movie title] //////
                                 //////////////////
                                 Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 7),
+                                  padding: EdgeInsets.symmetric(horizontal: 12),
                                   alignment: Alignment.bottomLeft
-                                      .add(Alignment(.3, -.2)),
+                                      .add(Alignment(.3, -.1)),
                                   child: Text(
                                     movies.results[index].title,
                                     overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
+                                    maxLines: 1,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 18, shadows: [
+                                    style: TextStyle(fontSize: 15, shadows: [
                                       Shadow(
                                           offset: Offset(.21, .21),
-                                          color: Colors.black),
+                                          color: Colors.red,
+                                          blurRadius: 5),
                                       Shadow(
                                           offset: Offset(.21, -.21),
-                                          color: Colors.black),
+                                          color: Colors.black,
+                                          blurRadius: 5),
                                       Shadow(
                                           offset: Offset(-.21, .21),
-                                          color: Colors.black),
+                                          color: Colors.black,
+                                          blurRadius: 5),
                                       Shadow(
                                           offset: Offset(-.21, -.21),
                                           color: Colors.black)
@@ -91,11 +96,12 @@ class TrendingMoviesContainer extends StatelessWidget {
                               ],
                             ),
                             onTap: () {
-                              context.read<CastBloc>()
+                              context
+                                  .read<CastBloc>()
                                   .add(FetchingCast(movies.results[index].id));
                               Navigator.pushNamed(context, "/detailScreen",
-                                  arguments: ScreenArguments(
-                                      index, "trend:$index"));
+                                  arguments:
+                                      ScreenArguments(index, "trend:$index"));
                             },
                           ),
                         ),
@@ -106,12 +112,13 @@ class TrendingMoviesContainer extends StatelessWidget {
                           initialPage: 0,
                           enableInfiniteScroll: true,
                           reverse: false,
-                          autoPlay: true, //Enable it later
+                          autoPlay: true,
+                          //Enable it later
                           autoPlayInterval: Duration(seconds: 5),
                           autoPlayAnimationDuration:
                               Duration(milliseconds: 800),
-                          autoPlayCurve:
-                              Curves.fastLinearToSlowEaseIn, //fastOutSlowIn
+                          autoPlayCurve: Curves.fastLinearToSlowEaseIn,
+                          //fastOutSlowIn
                           enlargeCenterPage: true,
                           scrollDirection: Axis.horizontal,
                         )));

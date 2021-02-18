@@ -16,6 +16,7 @@ class SearchScreen extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
     ),
   );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
 import 'package:movies_app_with_BLoC/logic/blocs/movie_bloc/movies_bloc.dart';
-import 'file:///C:/Users/ah_as/AndroidStudioProjects/movies_app_with_BLoC/lib/presentation/screens/home_screen/homescreen_body/movie_card.dart';
+import 'package:movies_app_with_BLoC/presentation/screens/home_screen/homescreen_body/trending_text_and_arrows.dart';
+
+import 'movie_card.dart';
 import 'trending_movies_card.dart';
 
 class HomeScreenBody extends StatelessWidget {
@@ -14,7 +16,6 @@ class HomeScreenBody extends StatelessWidget {
         scrollDirection: Axis.vertical,
         slivers: [
           SliverAppBar(
-
             automaticallyImplyLeading: false,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             // floating: true,
@@ -25,31 +26,7 @@ class HomeScreenBody extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        Text(
-                          "Trending",
-                          style: Theme.of(context).textTheme.headline6.copyWith(
-                              fontSize: 17.8,
-                              fontWeight: FontWeight.bold,
-                              shadows: [
-                                Shadow(
-                                    color: Colors.deepOrange,
-                                    offset: Offset(-.2, -.2)),
-                                Shadow(
-                                    color: Colors.white12,
-                                    offset: Offset(.2, .2))
-                              ]),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(
-                          StaticData().iconsList[0].icon,
-                          color: Colors.deepOrange,
-                        )
-                      ],
-                    ),
+                    child: TrendingTextAndArrows(),
                     height: 40,
                   ),
                   TrendingMoviesContainer(
@@ -60,7 +37,7 @@ class HomeScreenBody extends StatelessWidget {
             ),
           ),
           SliverFixedExtentList(
-            itemExtent: 435,
+            itemExtent: 435,//change this to media queryy
             delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) => Card(
                         child: MovieCard(

@@ -7,7 +7,6 @@ class Movies {
   int totalResults;
   String error;
 
-
   Movies(
       {this.page = 1,
       this.results,
@@ -26,7 +25,7 @@ class Movies {
     totalResults = json['total_results'];
   }
 
-  Movies.withError(String errorValue):
-        results = List(),
+  Movies.withError(String errorValue)
+      : results = List(),
         error = errorValue;
 }

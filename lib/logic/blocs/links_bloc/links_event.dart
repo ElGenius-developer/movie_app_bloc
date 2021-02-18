@@ -1,6 +1,6 @@
 part of 'links_bloc.dart';
 
-abstract class LinksEvent extends Equatable {
+abstract class LinksEvent {
   const LinksEvent();
 }
 
@@ -8,9 +8,6 @@ class LaunchTrailer extends LinksEvent {
   final int movieID;
 
   LaunchTrailer({@required this.movieID});
-
-  @override
-  List<Object> get props => [movieID];
 }
 
 class ShareMovie extends LinksEvent {
@@ -21,7 +18,7 @@ class ShareMovie extends LinksEvent {
 
   ShareMovie(
       {@required this.movieName,
-        @required this.index, @required this.context, @required this.movieID});
-
-  List<Object> get props => [movieID];
+      @required this.index,
+      @required this.context,
+      @required this.movieID});
 }

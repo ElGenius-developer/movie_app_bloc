@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
 import 'package:movies_app_with_BLoC/data/models/movies_model/moviesAPI.dart';
@@ -11,11 +13,14 @@ class SearchRepository {
       'api_key': _constants.apiKey,
       'query': query,
       'language': 'en-US',
-      'page': page ?? 1,};
+      'page': page ?? 1,
+    };
     var _movies = Movies();
     try {
       final res = await Dio().get(
-        url, queryParameters: parameters,);
+        url,
+        queryParameters: parameters,
+      );
       _movies = Movies.fromJson(res.data);
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");

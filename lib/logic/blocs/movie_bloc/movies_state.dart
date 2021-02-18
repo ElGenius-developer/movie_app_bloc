@@ -1,18 +1,14 @@
 part of 'movies_bloc.dart';
 
 //Equatable is used to ensure that two instance are fully equal to each other
-abstract class MoviesState extends Equatable {
+abstract class MoviesState {
   const MoviesState();
 }
 
 class InitialState extends MoviesState {
-  @override
-  List<Object> get props => [];
 }
 
 class LoadingState extends MoviesState {
-  @override
-  List<Object> get props => [];
 }
 
 class ErrorState extends MoviesState {
@@ -20,8 +16,7 @@ class ErrorState extends MoviesState {
 
   ErrorState({@required this.errorMessage});
 
-  @override
-  List<Object> get props => [errorMessage];
+
 }
 
 class SuccessState extends MoviesState {
@@ -30,6 +25,5 @@ class SuccessState extends MoviesState {
 
   SuccessState({this.movies, this.cast});
 
-  @override
-  List<Object> get props => [movies];
+
 }

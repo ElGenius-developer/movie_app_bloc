@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 class MyCachedImageNetwork extends StatelessWidget {
   final String url;
   final BoxFit boxFit;
-  const MyCachedImageNetwork({Key key, @required this.url,  @required this.boxFit})
+
+  const MyCachedImageNetwork(
+      {Key key, @required this.url, @required this.boxFit})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
@@ -22,8 +25,9 @@ class MyCachedImageNetwork extends StatelessWidget {
           ),
         ),
       ),
-      errorWidget: (context, url, error) => Icon(CupertinoIcons.exclamationmark_triangle_fill),
-      placeholderFadeInDuration: Duration(microseconds:200 ),
+      errorWidget: (context, url, error) =>
+          Icon(CupertinoIcons.exclamationmark_triangle_fill),
+      placeholderFadeInDuration: Duration(microseconds: 200),
       fadeOutDuration: Duration(microseconds: 150),
       fadeInCurve: Curves.bounceInOut,
       filterQuality: FilterQuality.high,
