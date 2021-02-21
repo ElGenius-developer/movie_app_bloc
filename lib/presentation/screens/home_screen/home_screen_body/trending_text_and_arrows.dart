@@ -10,11 +10,11 @@ class TrendingTextAndArrows extends StatelessWidget {
     return IconButton(
         tooltip: isIncrease ? "next" : "back",
         icon: Icon(
-          isIncrease?  CupertinoIcons.chevron_right_circle:
-          CupertinoIcons.chevron_left_circle,
-                 color: Colors.redAccent.shade700,
-
-        ) ,
+          isIncrease
+              ? CupertinoIcons.chevron_right_circle
+              : CupertinoIcons.chevron_left_circle,
+          color: Colors.redAccent.shade700,
+        ),
         onPressed: () {
           int index, pageNumber;
 
@@ -34,27 +34,24 @@ class TrendingTextAndArrows extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-         return Container(
-           width: StaticData.size.width,
-           child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-             child: Row(
+    return Container(
+      width: StaticData.size.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Row(
               children: [
                 Text(
                   "Trending",
                   style: Theme.of(context).textTheme.headline6.copyWith(
-                      fontSize: StaticData.size.width/22,
+                      fontSize: StaticData.size.width / 22,
                       fontWeight: FontWeight.w700,
                       fontStyle: FontStyle.italic,
                       shadows: [
-                        Shadow(
-                            color: Colors.white,blurRadius: 1),
-                        Shadow(
-                            color: Colors.red.shade900
-                            ,blurRadius: 1.2),
-                       ]),
+                        Shadow(color: Colors.white, blurRadius: 1),
+                        Shadow(color: Colors.red.shade900, blurRadius: 1.2),
+                      ]),
                 ),
                 SizedBox(
                   width: 10,
@@ -65,28 +62,33 @@ class TrendingTextAndArrows extends StatelessWidget {
                 ),
               ],
             ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            iconArrow(false, context),
-            Container(
-              width: StaticData.size.width/8,
-              height: StaticData.size.height/13,
-              alignment: Alignment.center,
-              child: Text(
-                "${context.watch<MoviesBloc>().pageNumber}",
-                style: Theme.of(context).textTheme.headline6.copyWith(
-                    color: Theme.of(context).textTheme.overline.color,
-                    fontStyle: FontStyle.italic,
-                    shadows: [Shadow(color: Colors.red.shade900,offset: Offset(-1,1), blurRadius: 10)]),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              iconArrow(false, context),
+              Container(
+                width: StaticData.size.width / 8,
+                height: StaticData.size.height / 13,
+                alignment: Alignment.center,
+                child: Text(
+                  "${context.watch<MoviesBloc>().pageNumber}",
+                  style: Theme.of(context).textTheme.headline6.copyWith(
+                      color: Theme.of(context).textTheme.overline.color,
+                      fontStyle: FontStyle.italic,
+                      shadows: [
+                        Shadow(
+                            color: Colors.red.shade900,
+                            offset: Offset(-1, 1),
+                            blurRadius: 10)
+                      ]),
+                ),
               ),
-            ),
-            iconArrow(true, context),
-          ],
-        ),
-      ],
-    ),
-         );
+              iconArrow(true, context),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

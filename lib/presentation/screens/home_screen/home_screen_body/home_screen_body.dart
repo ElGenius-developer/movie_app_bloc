@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
+import 'package:movies_app_with_BLoC/presentation/screens/home_screen/home_screen_body/trending_text_and_arrows.dart';
 import '../../../../logic/blocs/movie_bloc/movies_bloc.dart';
-import '../home_screen_body/trending_text_and_arrows.dart';
 import 'movie_card.dart';
 import 'trending_movies_card.dart';
 

@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../data/constants/static_data.dart';
 import '../../../../logic/blocs/cast_bloc/cast_bloc.dart';
 import '../../../../logic/blocs/trending_bloc/trending_bloc.dart';
@@ -73,8 +74,8 @@ class TrendingMoviesContainer extends StatelessWidget {
                         ),
                         options: CarouselOptions(
                           height: StaticData.size.height / 4,
-                          aspectRatio:
-                              StaticData.size.aspectRatio * 2.95, //16 / 9,
+                          aspectRatio: StaticData.size.aspectRatio * 2.95,
+                          //16 / 9,
                           viewportFraction: StaticData.size.aspectRatio * 1.55,
                           initialPage: 0,
                           enableInfiniteScroll: true,

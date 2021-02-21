@@ -4,6 +4,7 @@ import 'package:movies_app_with_BLoC/logic/blocs/cast_bloc/cast_bloc.dart';
 import 'package:movies_app_with_BLoC/logic/blocs/like_bloc/like_bloc.dart';
 import 'package:movies_app_with_BLoC/presentation/routers/router_arguments.dart';
 import 'package:movies_app_with_BLoC/presentation/screens/detail_screen/row_of_image_and_title.dart';
+import 'package:movies_app_with_BLoC/presentation/widgets/toast_dialog_method/show_toast_alert.dart';
 
 class FavouriteList extends StatelessWidget {
   @override
@@ -53,10 +54,16 @@ class FavouriteList extends StatelessWidget {
                 child: IconButton(
                     highlightColor: Theme.of(context).scaffoldBackgroundColor,
                     onPressed: () {
+
                       final movie =
                           context.read<LikeBloc>().box.values.toList()[index];
                       context.read<LikeBloc>()
                         ..add(RemoveMovieFromLikes(movie));
+                      ToastAlertDialog.showAlert(context, "${movie.title} is removed",
+                      title: "Remove",
+                        alignDouble: .92,
+                        icon: Icons.done,
+                      );
                     },
                     tooltip: "remove",
                     icon: Icon(

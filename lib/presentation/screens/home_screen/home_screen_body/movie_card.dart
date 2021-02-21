@@ -40,16 +40,17 @@ class MovieCard extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.center,
-              width:StaticData.size.width * .7,
+              width: StaticData.size.width * .7,
               height: StaticData.size.height / 14,
-               child: Text(
+              child: Text(
                 movies.results[index].title,
                 maxLines: 2,
                 style: Theme.of(context)
                     .textTheme
                     .headline6
-                    .copyWith(fontSize:  StaticData.size.width/24.2, shadows: [
-                  Shadow(color: Colors.red.shade900, blurRadius: 6),]),
+                    .copyWith(fontSize: StaticData.size.width / 24.2, shadows: [
+                  Shadow(color: Colors.red.shade900, blurRadius: 6),
+                ]),
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
               ),

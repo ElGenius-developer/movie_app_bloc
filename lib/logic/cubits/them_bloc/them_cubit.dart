@@ -34,6 +34,17 @@ class ThemeCubit extends Cubit<ThemeState> {
       print(e.toString());
     }
   }
+  void initialTheme(){
+    if(box.isEmpty)
+      {
+        isDarkThemEnabled=false;
+        saveTheme();
+      }
+    else{
+      isDarkThemEnabled=box.values.first;
+    }
+
+  }
 
   @override
   Future<Function> close() {

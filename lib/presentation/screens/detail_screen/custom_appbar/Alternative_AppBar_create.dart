@@ -53,6 +53,7 @@ class CustomAppBar extends StatelessWidget {
                   context: context,
                   movieID: movie.id,
                   movieName: movie.title));
+
             },
           ),
         ],
