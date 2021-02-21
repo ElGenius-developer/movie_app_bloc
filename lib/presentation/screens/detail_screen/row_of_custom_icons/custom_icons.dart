@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomizedIcons extends StatelessWidget {
-  final double size1;
-  final double size2;
   final IconData icon1;
   final IconData icon2;
   final String innerText;
@@ -11,8 +9,6 @@ class CustomizedIcons extends StatelessWidget {
 
   const CustomizedIcons(
       {Key key,
-      this.size1,
-      this.size2,
       this.icon1,
       this.icon2,
       this.innerText,
@@ -21,6 +17,9 @@ class CustomizedIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size1  =MediaQuery.of(context).size.width/10;
+    final size2  =MediaQuery.of(context).size.width/14;
+
     return Column(
       children: [
         Stack(
@@ -47,7 +46,7 @@ class CustomizedIcons extends StatelessWidget {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(7.0),
           child: Text(
             underlineText,
             style: TextStyle(

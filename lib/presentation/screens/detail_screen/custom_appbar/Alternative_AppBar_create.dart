@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icon_shadow/icon_shadow.dart';
+import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
 import 'package:movies_app_with_BLoC/data/models/movies_model/movies_details.dart';
 import 'package:movies_app_with_BLoC/logic/blocs/links_bloc/links_bloc.dart';
 
@@ -16,6 +17,7 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Align(
       alignment: Alignment.topCenter,
       child: Row(
@@ -26,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
               Icon(
                 Icons.arrow_back,
                 color: Colors.white,
-                size: 27,
+                size: StaticData.size.width/15,
               ),
               shadowColor: Colors.black,
               showShadow: true,
@@ -40,7 +42,7 @@ class CustomAppBar extends StatelessWidget {
               Icon(
                 Icons.share,
                 color: Colors.white,
-                size: 26,
+                size: StaticData.size.width/15,
               ),
               shadowColor: Colors.black,
               showShadow: true,

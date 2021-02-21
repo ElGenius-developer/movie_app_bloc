@@ -1,7 +1,10 @@
 part of 'search_bloc.dart';
 
 abstract class SearchEvent {}
+class InitialSearchEvent extends SearchEvent {
 
+
+ }
 class FetchSearchResults extends SearchEvent {
   final String query;
 

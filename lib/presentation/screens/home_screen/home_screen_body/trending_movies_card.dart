@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../data/constants/static_data.dart';
 import '../../../../logic/blocs/cast_bloc/cast_bloc.dart';
 import '../../../../logic/blocs/trending_bloc/trending_bloc.dart';
@@ -17,20 +16,18 @@ class TrendingMoviesContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Container(
-        height: size.height / 5, //165,
-
+        height: StaticData.size.height / 4.2, //165,
+        width: StaticData.size.width,
         child: Card(
-          color: Colors.transparent.withAlpha(1),
+          color: Colors.transparent,
           child: BlocBuilder<TrendingBloc, TrendingState>(
             builder: (context, state) {
               if (state is LoadingTrending || state is TrendingInitial) {
                 return Container(
-                  height: 5,
-                  // width: 100,
+                  height: StaticData.size.height / 136,
+                  width: double.maxFinite,
                   alignment: Alignment.center,
-                  // padding: EdgeInsets.symmetric(horizontal: 35),
                   child: CircularProgressIndicator(
                     // minHeight: 4,
                     valueColor: AlwaysStoppedAnimation(Colors.red.shade700),
@@ -39,58 +36,27 @@ class TrendingMoviesContainer extends StatelessWidget {
               } else if (state is SuccessLoadingTrend) {
                 final movies = state.trendingMovies;
                 return Container(
-                    height: size.height / 5, //165,
+                    height: StaticData.size.height / 5, //165,
+                    width: StaticData.size.width,
                     child: CarouselSlider(
                         items: List.generate(
                           movies.results.length ?? 0,
                           (index) => GestureDetector(
                             child: Stack(
                               alignment: Alignment.center,
+                              fit: StackFit.loose,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(15),
-                                    child: Hero(
-                                      tag: "trend:$index",
-                                      child: Image.network(
-                                        movies.results[index].backdropPath,
-                                        height: size.height / 5,
-                                        width: size.width * .8 /*310*/,
-                                        fit: BoxFit.cover,
-                                      ),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Hero(
+                                    tag: "trend:$index",
+                                    child: Image.network(
+                                      movies.results[index].backdropPath,
+                                      height: StaticData.size.height / 4,
+                                      width:
+                                          StaticData.size.width * .75 /*310*/,
+                                      fit: BoxFit.cover,
                                     ),
-                                  ),
-                                ),
-                                //// [movie title] //////
-                                //////////////////
-                                Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 12),
-                                  alignment: Alignment.bottomLeft
-                                      .add(Alignment(.3, -.1)),
-                                  child: Text(
-                                    movies.results[index].title,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 15, shadows: [
-                                      Shadow(
-                                          offset: Offset(.21, .21),
-                                          color: Colors.red,
-                                          blurRadius: 5),
-                                      Shadow(
-                                          offset: Offset(.21, -.21),
-                                          color: Colors.black,
-                                          blurRadius: 5),
-                                      Shadow(
-                                          offset: Offset(-.21, .21),
-                                          color: Colors.black,
-                                          blurRadius: 5),
-                                      Shadow(
-                                          offset: Offset(-.21, -.21),
-                                          color: Colors.black)
-                                    ]),
                                   ),
                                 ),
                               ],
@@ -106,9 +72,10 @@ class TrendingMoviesContainer extends StatelessWidget {
                           ),
                         ),
                         options: CarouselOptions(
-                          height: size.height / 4.6,
-                          aspectRatio: 16 / 9,
-                          viewportFraction: 0.8,
+                          height: StaticData.size.height / 4,
+                          aspectRatio:
+                              StaticData.size.aspectRatio * 2.95, //16 / 9,
+                          viewportFraction: StaticData.size.aspectRatio * 1.55,
                           initialPage: 0,
                           enableInfiniteScroll: true,
                           reverse: false,

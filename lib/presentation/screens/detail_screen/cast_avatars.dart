@@ -40,6 +40,7 @@ class CastAvatars extends StatelessWidget {
                       // padding: EdgeInsets.only(left: 10),
                       itemBuilder: (context, index) {
                         var image = CastBloc.credits.cast[index].profilePath;
+
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           child: Column(
@@ -47,16 +48,16 @@ class CastAvatars extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               CircleAvatar(
-                                  radius: 48,
+                                  radius: StaticData.size.width*.119,
                                   backgroundImage: CachedNetworkImageProvider(
                                       (image == null)
                                           ? StaticData().noImageUrl
                                           : StaticData().imageUrlPrefix +
                                               image)),
                               SizedBox(
-                                width: 100,
+                                width: StaticData.size.width/4.1,
                                 child: Text(
-                                  "${state.credits.cast[index].name}",
+                                  "${state.credits.cast[index].name}"??"",
                                   textAlign: TextAlign.center,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(

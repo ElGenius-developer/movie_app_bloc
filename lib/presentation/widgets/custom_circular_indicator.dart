@@ -9,10 +9,9 @@ class CustomCircularIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Container(
-      width: size.width / 2.5,
-      height: size.height / 5,
+      width: 150,
+      height:150,
       child: Padding(
         padding: const EdgeInsets.all(2.0),
         child: LiquidCircularProgressIndicator(
@@ -31,7 +30,7 @@ class CustomCircularIndicator extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline6
-                .copyWith(color: Colors.white70, fontSize: 20),
+                .copyWith(  fontSize: 20),
           ),
         ),
       ),

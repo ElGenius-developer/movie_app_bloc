@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
 
 class MyCachedImageNetwork extends StatelessWidget {
   final String url;
@@ -18,8 +19,8 @@ class MyCachedImageNetwork extends StatelessWidget {
       alignment: Alignment.topCenter,
       placeholder: (_, url) => Center(
         child: Container(
-          width: 100,
-          height: 1,
+          width: StaticData.size.width / 4.1,
+          height: StaticData.size.aspectRatio * 6.5,
           child: LinearProgressIndicator(
             valueColor: AlwaysStoppedAnimation(Colors.red.shade900),
           ),

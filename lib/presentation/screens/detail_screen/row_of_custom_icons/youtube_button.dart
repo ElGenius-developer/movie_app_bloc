@@ -1,6 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
 import 'package:movies_app_with_BLoC/logic/blocs/links_bloc/links_bloc.dart';
 
 class YouTubeButton extends StatelessWidget {
@@ -15,25 +16,24 @@ class YouTubeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         child: Padding(
-          padding: const EdgeInsets.only(right: 8.0),
+          padding: const EdgeInsets.only(right: 5.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+          // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                width: 35,
-                height: 35,
+                width: StaticData.size.width / 11,
+                height: StaticData.size.width / 11,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.red[900],
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 9, vertical: 10),
                 child: Container(
-                  width: 20,
-                  height: 10,
+                  width: StaticData.size.width / 20.5,
+                  height: StaticData.size.width / 41,
                   child: Icon(
                     Icons.play_arrow,
-                    size: 12,
+                    size: 13,
                     color: Colors.red,
                   ),
                   decoration: BoxDecoration(
@@ -47,7 +47,7 @@ class YouTubeButton extends StatelessWidget {
                 child: Text(
                   "Trailer",
                   style: TextStyle(
-                    fontSize: 9,
+                    fontSize: StaticData.size.width / 45,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

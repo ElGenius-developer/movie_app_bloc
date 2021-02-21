@@ -26,15 +26,13 @@ class LikeBloc extends Bloc<LikeEvent, LikeState> {
   }
 
   void addToDatabase(MoviesDetails movie) async {
-    box = Hive.box<MoviesDetails>('savedList');
+    // box = Hive.box<MoviesDetails>('savedList');
     try {
       await box.put('${movie.id}', movie);
     } catch (e) {
       print(e.toString());
     }
-    box.values.forEach((value) {
-      print(value.title);
-    });
+
   }
 
   void deleteFromDatabase(String movieId) async {

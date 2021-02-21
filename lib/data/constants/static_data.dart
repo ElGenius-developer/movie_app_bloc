@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class StaticData {
+
+  static Size size;
+
   final String imageUrlPrefix =
       'https://image.tmdb.org/t/p/w342'; //the start of the image url
 
@@ -15,21 +18,21 @@ class StaticData {
 
   final String noImageUrl =
       'http://www.newdesignfile.com/postpic/2015/02/no-icon-available_68024.png';
-
-  // "http://www.aaru.edu.jo/websites/aaru2/wp-content/plugins/learnpress/assets/images/no-image.png?Mobile=1&Source=%2F%5Flayouts%2Fmobile%2Fdispform%2Easpx%3FList%3D78b536db%252De7c7%252D45d9%252Da661%252Ddb2a2aa2fbaf%26View%3D6efc759a%252D0646%252D433c%252Dab6e%252D2f027ffe0799%26RootFolder%3D%252Fwebsites%252Faaru2%252Fwp%252Dcontent%252Fplugins%252Flearnpress%252Fassets%252Fimages%26ID%3D4786%26CurrentPage%3D1";
+  final String noImageUrlCover =
+      'https://api.happening.media/uploads/default/default.jpg';
 
   final categoriesList = ['popular', 'top_rated', 'now_playing', 'upcoming'];
   final categoriesNames = ['Popular', 'Top Rated', 'Now Playing', 'Upcoming'];
   final iconsList = [
-    Icon(Icons.local_fire_department_outlined, color: Colors.red[600]),
+    Icon(Icons.local_fire_department_outlined,size: 30, color: Colors.red.shade900),
     Icon(
-      Icons.star,
-      color: Colors.red[600],
+      Icons.star,size: 30,
+      color: Colors.red.shade900,
     ),
-    Icon(Icons.play_circle_fill, color: Colors.red[600]),
-    Icon(CupertinoIcons.clock, color: Colors.red[600]), //Color(0xffFBFCFC)
+    Icon(Icons.play_circle_fill,size: 30, color: Colors.red.shade900),
+    Icon(CupertinoIcons.time_solid,size: 30, color: Colors.red.shade900), //Color(0xffFBFCFC)
   ];
-
+////////Dark Theme
   ThemeData darkThemeData = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
     primaryColor: Colors.red[800],
@@ -44,22 +47,32 @@ class StaticData {
     appBarTheme: AppBarTheme(
       color: Colors.red[900],
     ),
+    shadowColor: Color(0xff1B222F ),
+
     colorScheme: ColorScheme.dark(),
     textSelectionColor: Colors.white,
   );
+////////Light Theme
 
   ThemeData lightThemData = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
     primaryColor: Colors.red,
-    canvasColor: Color(0xffE5E7E9),
-    backgroundColor: Color(0xffE5E7E9),
-    buttonTheme: ButtonThemeData(
-      buttonColor: Colors.red[700],
-    ),
+    canvasColor: Color(0xFFE5E8E8),
+    scaffoldBackgroundColor: Color(0xffF0F3F4),
+    backgroundColor:Color(0xffF0F3F4),
+    cardColor: Color(0xffEBF5F5),
+    shadowColor: Colors.black38,
+    highlightColor: Colors.black54,
+
+   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+     // selectedItemColor: Colors.black12,
+   selectedItemColor: Colors.black,
+
+   ),
     appBarTheme: AppBarTheme(
-      color: Colors.red[700],
+      color: Colors.red.shade900,
     ),
     colorScheme: ColorScheme.light(),
-    textSelectionColor: Colors.black,
+    textSelectionColor: Colors.black54,
   );
 }

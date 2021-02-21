@@ -37,7 +37,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       } catch (error) {
         yield SearchError(error: error.toString());
       }
-    } else if (event is FetchNewSearchResults) {
+    }
+    else if (event is FetchNewSearchResults) {
       yield SearchLoading();
       try {
         for (int index; index < event.pageLength; index++) {
@@ -51,6 +52,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       } catch (error) {
         yield SearchError(error: error.toString());
       }
+    }
+    else{
+      yield SearchInitial();
     }
   }
 

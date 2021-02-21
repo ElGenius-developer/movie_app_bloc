@@ -14,6 +14,7 @@ import 'logic/blocs/movie_bloc/movies_bloc.dart';
 import 'logic/blocs/search_bloc/search_bloc.dart';
 import 'logic/blocs/trending_bloc/trending_bloc.dart';
 import 'logic/cubits/Internet_cubit/internet_cubit.dart';
+import 'logic/cubits/them_bloc/them_cubit.dart';
 import 'presentation/routers/app_router.dart';
 
 void main() async {
@@ -26,11 +27,15 @@ void main() async {
     ..init(path.path)
     ..registerAdapter(MoviesDetailsAdapter());
   await Hive.openBox<MoviesDetails>("savedList");
+  await Hive.openBox<bool>("theme");
   final connectivity = Connectivity();
 
   runApp(MultiBlocProvider(providers: [
     BlocProvider<InternetCubit>(
       create: (context) => InternetCubit(connectivity: connectivity),
+    ),
+    BlocProvider<ThemeCubit>(
+      create: (context) => ThemeCubit(),
     ),
     BlocProvider<MoviesBloc>(
       create: (context) => MoviesBloc()
@@ -62,34 +67,39 @@ class _MovieAppState extends State<MovieApp> {
   void initState() {
     BlocProvider.of<LikeBloc>(context).box =
         Hive.box<MoviesDetails>("savedList");
+    BlocProvider.of<ThemeCubit>(context).box = Hive.box<bool>("theme");
     super.initState();
   }
 
+
+
+  final appRouter = AppRouter();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ThemeCubit, ThemeState>(
+      builder: (context, state) => MaterialApp(
+        title: 'Movie App',
+        debugShowCheckedModeBanner: false,
+        theme: StaticData().lightThemData,
+        darkTheme: StaticData().darkThemeData,
+        themeMode: context.read<ThemeCubit>().box.values.first
+            ? ThemeMode.dark
+            : ThemeMode.light,
+        onGenerateRoute: appRouter.onGeneratedRoute,
+      ),
+    );
+  }
   @override
   void dispose() {
-    Hive.close();
+    Hive.close();//Closes all open boxes.
     BlocProvider.of<MoviesBloc>(context).close();
     BlocProvider.of<LinksBloc>(context).close();
     BlocProvider.of<CastBloc>(context).close();
     BlocProvider.of<TrendingBloc>(context).close();
     BlocProvider.of<SearchBloc>(context).close();
     BlocProvider.of<LikeBloc>(context).close();
+    BlocProvider.of<ThemeCubit>(context).close();
     super.dispose();
-  }
-
-  final appRouter = AppRouter();
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Movie App',
-      debugShowCheckedModeBanner: false,
-      theme: StaticData().lightThemData,
-      darkTheme: StaticData().darkThemeData,
-      themeMode: ThemeMode.dark,
-      /*false?
-      ThemeMode.light:ThemeMode.dark,*/
-      onGenerateRoute: appRouter.onGeneratedRoute,
-    );
   }
 }

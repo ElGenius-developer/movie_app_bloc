@@ -55,7 +55,7 @@ class MoviesDetails {
     if (json != null) {
       adult = json['adult'];
       backdropPath = (json['backdrop_path'] == null)
-          ? StaticData().noImageUrl
+          ? StaticData().noImageUrlCover
           : "${StaticData().imageUrlPrefix}${json['backdrop_path']}";
       genreIds = json['genre_ids'].cast<int>();
       id = json['id'];

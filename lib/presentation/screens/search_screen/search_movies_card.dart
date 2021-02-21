@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
 import '../../../data/models/movies_model/moviesAPI.dart';
 import '../../../logic/blocs/cast_bloc/cast_bloc.dart';
 import '../../../presentation/routers/router_arguments.dart';
@@ -18,10 +18,10 @@ class SearchMoviesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Expanded(
       child: Container(
-        width: size.width - 35,
+
+        width: StaticData.size.width - 20,
         child: ListView.builder(
             shrinkWrap: true,
             itemCount: length ?? 0,

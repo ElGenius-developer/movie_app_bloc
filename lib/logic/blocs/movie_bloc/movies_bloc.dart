@@ -14,6 +14,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   static Movies _movies;
   int categoryNumber = 0;
   int pageNumber = 1;
+  // static Size size;
 
   static Movies get movies => _movies;
   static var credits = Credits();
@@ -22,7 +23,9 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   MoviesBloc({MoviesRepository moviesRepository}) : super(InitialState());
 
   @override
-  Stream<MoviesState> mapEventToState(MoviesEvent event,) async* {
+  Stream<MoviesState> mapEventToState(
+    MoviesEvent event,
+  ) async* {
     if (event is FetchingData) {
       //emit the loading state First...
       yield LoadingState();
@@ -45,7 +48,8 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     } else if (event is ChangePageNumber) {
       int _pageNumber = event.pageNumber;
       print(_pageNumber);
-      if (_pageNumber != null && _pageNumber >= 1 &&
+      if (_pageNumber != null &&
+          _pageNumber >= 1 &&
           _pageNumber <= _movies.totalPages) {
         yield LoadingState();
         try {

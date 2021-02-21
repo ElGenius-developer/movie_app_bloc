@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
 import 'package:movies_app_with_BLoC/data/models/movies_model/movies_details.dart';
 import 'package:movies_app_with_BLoC/presentation/widgets/my_cached_image_network.dart';
 
@@ -11,26 +12,26 @@ class RowImageAndTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width - 5,
-      height: size.height / 2.89,
+     return Container(
+      width: StaticData.size.width - 5,
+      height: StaticData.size.height / 2.89,
       child: Card(
+
         child: Row(
           children: [
             Container(
               padding: EdgeInsets.only(left: 10),
-              width: size.width / 2.5,
-              height: size.height / 2,
+              width: StaticData.size.width / 2.5,
+              height: StaticData.size.height / 2,
               child: MyCachedImageNetwork(
                 boxFit: BoxFit.scaleDown,
-                url: movies[index].posterPath,
+                url: (movies.isNotEmpty)?movies[index].posterPath:"",
               ),
             ),
             //the second row (image , title, language , release date
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(left: size.width * .07),
+                padding: EdgeInsets.only(left: StaticData.size.width * .05),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -38,13 +39,15 @@ class RowImageAndTitle extends StatelessWidget {
                     ///title/////
                     Container(
                       alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.only(top: 15),
                       child: Text(
                         "${movies[index].title}",
-                        textAlign: TextAlign.left,
+                        // textAlign: TextAlign.justify,
+
                         style: TextStyle(
-                            fontSize: 21,
+                            fontSize: 20,
                             height: 1.2,
+
                             color: Colors.red[700],
                             shadows: [
                               Shadow(
@@ -63,12 +66,12 @@ class RowImageAndTitle extends StatelessWidget {
                       child: RichText(
                           text: TextSpan(
                               text: "Language:  ",
-                              style: TextStyle(
-                                  // color: Colors.w,,
+                              style: Theme.of(context).textTheme.headline6.copyWith(
+                                  fontSize : 20,
                                   shadows: [
                                     Shadow(
-                                        offset: Offset(.3, -.3),
-                                        color: Colors.black)
+                                        blurRadius: 1.2,
+                                        color: Colors.red)
                                   ]),
                               children: [
                             TextSpan(
@@ -97,17 +100,3 @@ class RowImageAndTitle extends StatelessWidget {
     );
   }
 }
-/*
-bool checkData(DateTime date)
-{
-  DateTime dateTime = DateTime.now();
-  // print("${dateTime.year}-${dateTime.month}-${dateTime.day}");
-  if(date.isAfter(dateTime))
-  {
-    return false;
-  }
-  else {
-    return true;
-  }
-
-}*/

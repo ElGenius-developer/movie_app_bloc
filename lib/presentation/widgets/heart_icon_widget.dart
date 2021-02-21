@@ -8,9 +8,9 @@ class HeartIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Icon(
+    return Icon(
       (isAdd) ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
-      size: 40,
+      size: MediaQuery.of(context).size.width / 9.5,
       color: Colors.white,
     );
   }

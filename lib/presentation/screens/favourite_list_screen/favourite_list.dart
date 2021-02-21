@@ -15,18 +15,15 @@ class FavouriteList extends StatelessWidget {
           "Favourite",
           style: Theme.of(context).textTheme.headline6.copyWith(
               fontSize: 20,
-              shadows: [Shadow(blurRadius: 2, color: Colors.black87)]),
+              color: Colors.white,
+              shadows: [Shadow(blurRadius: 2, color: Colors.black38)]),
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15),
         child: ListView.separated(
           physics: BouncingScrollPhysics(),
-          itemCount: BlocProvider.of<LikeBloc>(context, listen: true)
-                  .box
-                  .values
-                  .length ??
-              0,
+          itemCount: context.watch<LikeBloc>().box.values.length ?? 0,
           separatorBuilder: (context, index) => Divider(
             color: Colors.red,
             thickness: .5,
@@ -35,22 +32,21 @@ class FavouriteList extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             children: [
               GestureDetector(
-                child: RowImageAndTitle(
-                  index: index,
-                  movies: BlocProvider.of<LikeBloc>(context, listen: true)
-                      .box
-                      .values
-                      .toList(),
-                ),
-                onTap: () {
-
-                  context.read<CastBloc>()..add(FetchingCast(BlocProvider.of<LikeBloc>(context, listen: true)
-                      .box
-                      .values
-                      .toList()[index].id));
-                  Navigator.pushNamed(context, "/detailScreen",arguments: ScreenArguments(index, "favourite"));
-                }
-              ),
+                  child: RowImageAndTitle(
+                    index: index,
+                    movies: context.watch<LikeBloc>().box.values.toList(),
+                  ),
+                  onTap: () {
+                    context.read<CastBloc>()
+                      ..add(FetchingCast(context
+                          .read<LikeBloc>()
+                          .box
+                          .values
+                          .toList()[index]
+                          .id));
+                    Navigator.pushNamed(context, "/detailScreen",
+                        arguments: ScreenArguments(index, "favourite"));
+                  }),
               Container(
                 padding: EdgeInsets.all(4),
                 alignment: Alignment(.9, 0),
@@ -65,7 +61,7 @@ class FavouriteList extends StatelessWidget {
                     tooltip: "remove",
                     icon: Icon(
                       Icons.delete_rounded,
-                      color: Colors.grey,
+                      // color: Colors.grey,
                       size: 40,
                     )),
               )

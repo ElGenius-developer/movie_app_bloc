@@ -39,18 +39,15 @@ class DetailScreen extends StatelessWidget {
       body: SafeArea(
         child: BlocBuilder<MoviesBloc, MoviesState>(builder: (context, state) {
           return Container(
-            color: Color(0xff1B223F),
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: CustomScrollView(
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               slivers: [
                 SliverAppBar(
-                  // toolbarHeight: size.height / 2.5,
-
                   automaticallyImplyLeading: false,
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  floating: true,
-                  expandedHeight: MediaQuery.of(context).size.height / 3.5,
+                  expandedHeight: MediaQuery.of(context).size.height / 2.5,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Stack(
                       children: [
@@ -60,7 +57,7 @@ class DetailScreen extends StatelessWidget {
                               width: size.width,
                               height: size.height / 2.6,
                               child: MyCachedImageNetwork(
-                                boxFit: BoxFit.fitHeight,
+                                boxFit: BoxFit.cover,
                                 url: _movies[index].backdropPath,
                               )),
                         ),
@@ -114,7 +111,7 @@ class DetailScreen extends StatelessWidget {
                   [
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 3),
+                          vertical: 2, horizontal: 2),
                       child: RowImageAndTitle(
                         index: index,
                         movies: _movies,
@@ -127,14 +124,19 @@ class DetailScreen extends StatelessWidget {
                       index: index,
                       resultsMovies: _movies,
                     ),
-                    Container(
-                      padding: EdgeInsets.all(15),
-                      child: Text(
-                        _movies[index].overview ?? "",
-                        style: Theme.of(context).textTheme.bodyText2.copyWith(
-                            height: 1.5,
-                            fontSize: 15,
-                            fontStyle: FontStyle.italic),
+                    Card(
+                      child: Container(
+                        padding: const EdgeInsets.all(15),
+                        child: Text(
+
+                          _movies[index].overview ?? "",
+                          textAlign: TextAlign.justify,
+                          style: Theme.of(context).textTheme.bodyText2.copyWith(
+                              height: 1.5,
+                              fontSize: 15,
+                              wordSpacing: -1,
+                              fontStyle: FontStyle.italic),
+                        ),
                       ),
                     )
                   ],

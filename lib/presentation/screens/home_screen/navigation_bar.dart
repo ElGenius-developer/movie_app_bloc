@@ -27,7 +27,7 @@ class NavigationBar extends StatelessWidget {
           _constants.categoriesNames.length,
           (index) => BottomNavigationBarItem(
               label: _constants.categoriesNames[index],
-              backgroundColor: Color(0xff1B222F),
+              // backgroundColor: Color(0xff1B222F),
               //0xff1B212F//gray blue
               icon: IconShadowWidget(_constants.iconsList[index],
                   shadowColor: Colors.red[900])),
