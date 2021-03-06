@@ -27,4 +27,3 @@ used plugin:
   hive_generator: ^0.8.2
   build_runner:
 
-https://github.com/ElGenius-developer/movie_app_bloc.wiki.git
