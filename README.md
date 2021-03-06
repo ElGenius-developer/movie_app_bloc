@@ -27,3 +27,11 @@ used plugin:
   hive_generator: ^0.8.2
   build_runner:
 
+   ![](https://github.com/ElGenius-developer/movie_app_bloc/blob/main/Screenshot_2021-03-06-03-25-10-13_5b6ed6e36acb80b96aa8e950f0e63126.jpg)
+   ![](https://github.com/ElGenius-developer/movie_app_bloc/blob/main/Screenshot_2021-03-06-03-26-38-22_5b6ed6e36acb80b96aa8e950f0e63126.jpg)
+   ![](https://github.com/ElGenius-developer/movie_app_bloc/blob/main/Screenshot_2021-03-06-03-26-53-32_5b6ed6e36acb80b96aa8e950f0e63126.jpg)
+   ![](https://github.com/ElGenius-developer/movie_app_bloc/blob/main/Screenshot_2021-03-06-03-26-59-31_5b6ed6e36acb80b96aa8e950f0e63126.jpg)
+   ![](https://github.com/ElGenius-developer/movie_app_bloc/blob/main/Screenshot_2021-03-06-03-27-05-45_5b6ed6e36acb80b96aa8e950f0e63126.jpg)
+   ![](https://github.com/ElGenius-developer/movie_app_bloc/blob/main/Screenshot_2021-03-06-03-27-25-06_5b6ed6e36acb80b96aa8e950f0e63126.jpg)
+   ![](https://github.com/ElGenius-developer/movie_app_bloc/blob/main/Screenshot_2021-03-06-03-28-48-80_5b6ed6e36acb80b96aa8e950f0e63126.jpg)
+   ![](https://github.com/ElGenius-developer/movie_app_bloc/blob/main/Screenshot_2021-03-06-03-28-53-88_5b6ed6e36acb80b96aa8e950f0e63126.jpg)
