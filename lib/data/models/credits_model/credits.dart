@@ -13,7 +13,7 @@ class Credits {
   Credits.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     if (json['cast'] != null) {
-      cast = new List<Cast>();
+      cast =  <Cast>[];
       json['cast'].forEach((v) {
         cast.add(new Cast.fromJson(v));
       });
@@ -21,6 +21,6 @@ class Credits {
   }
 
   Credits.withError(String errorValue)
-      : cast = List(),
+      : cast = [],
         error = errorValue;
 }

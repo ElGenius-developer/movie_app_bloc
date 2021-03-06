@@ -16,7 +16,7 @@ class Movies {
   Movies.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     if (json['results'] != null) {
-      results = new List<MoviesDetails>();
+      results =  <MoviesDetails>[];
       json['results'].forEach((v) {
         results.add(new MoviesDetails.fromJson(v));
       });
@@ -26,6 +26,6 @@ class Movies {
   }
 
   Movies.withError(String errorValue)
-      : results = List(),
+      : results = [],
         error = errorValue;
 }

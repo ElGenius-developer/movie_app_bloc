@@ -7,7 +7,7 @@ class Trailers {
   Trailers.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     if (json['results'] != null) {
-      results = new List<TrailersResults>();
+      results = <TrailersResults>[];
       json['results'].forEach((v) {
         results.add(new TrailersResults.fromJson(v));
       });

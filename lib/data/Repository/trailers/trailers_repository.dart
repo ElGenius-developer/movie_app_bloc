@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app_with_BLoC/data/constants/static_data.dart';
 import 'package:movies_app_with_BLoC/data/models/trailers_model/trailersAPI.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TrailersRepository {

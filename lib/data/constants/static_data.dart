@@ -50,7 +50,10 @@ class StaticData {
     shadowColor: Color(0xff1B222F ),
 
     colorScheme: ColorScheme.dark(),
-    textSelectionColor: Colors.white,
+    textSelectionTheme:TextSelectionThemeData(
+      selectionColor: Colors.white,
+    ) ,
+
   );
 ////////Light Theme
 
@@ -73,6 +76,8 @@ class StaticData {
       color: Colors.red.shade900,
     ),
     colorScheme: ColorScheme.light(),
-    textSelectionColor: Colors.black54,
+    textSelectionTheme:TextSelectionThemeData(
+       selectionColor: Colors.black54,
+    ) ,
   );
 }

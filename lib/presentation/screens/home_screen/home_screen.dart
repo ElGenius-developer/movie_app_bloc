@@ -14,6 +14,7 @@ import 'package:movies_app_with_BLoC/presentation/widgets/toast_dialog_method/sh
 import 'home_screen_body/home_screen_body.dart';
 import 'navigation_bar.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
 int counter=0;
 
@@ -34,7 +35,7 @@ int counter=0;
             title: Text("Alert"),
             content: Text("Are you want to exit"),
             actions: [
-              FlatButton(
+              MaterialButton(
                   onPressed: () {
                     exit = true;
                     SystemNavigator.pop();
@@ -42,7 +43,7 @@ int counter=0;
                   child: Text(
                     "yes",
                   )),
-              FlatButton(
+              MaterialButton(
                   onPressed: () {
                     exit = false;
                     Navigator.pop(context);
